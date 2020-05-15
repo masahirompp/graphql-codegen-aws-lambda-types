@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-aws-lambda-types",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate aws-cdk AppSync Lambda Resolver types.",
   "main": "index.js",
   "types": "index.d.ts",
