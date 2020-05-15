@@ -97,7 +97,7 @@ const createImportPath = (outputFile: string, schemaFile: string) => {
   };
   const output = splitFilePath(outputFile);
   const schema = splitFilePath(schemaFile);
-  const relativePath = relative(output.path, schema.path) || "./";
+  const relativePath = relative(output.path, schema.path) || ".";
   return relativePath + sep + schema.basename;
 };
 
