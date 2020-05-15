@@ -1,5 +1,5 @@
-import { relative, delimiter, basename, extname } from "path";
 import { InputValueDefinitionNode, NamedTypeNode, TypeNode } from "graphql";
+import { basename, extname, relative, sep } from "path";
 import {
   PluginFunction,
   PluginValidateFn,
@@ -87,10 +87,10 @@ const normalizeAvoidOptionals = (avoidOptionals: Config["avoidOptionals"]) => {
 
 const createImportPath = (outputFile: string, schemaFile: string) => {
   const splitFilePath = (filePath: string) => {
-    const paths = filePath.split(delimiter);
+    const paths = filePath.split(sep);
     const filename = paths.pop() || "";
     return {
-      path: paths.join(delimiter),
+      path: paths.join(sep),
       basename: basename(filename, extname(filename)),
       filename,
     };
@@ -102,7 +102,6 @@ const createImportPath = (outputFile: string, schemaFile: string) => {
 };
 
 export const plugin: PluginFunction<Config> = (schema, _, config, info) => {
-  console.log(info, config.schemaPath);
   const scalars = Object.keys(buildScalars(schema, config.scalars || {}));
   const avoidInputValueOptional = normalizeAvoidOptionals(config.avoidOptionals)
     .inputValue;
