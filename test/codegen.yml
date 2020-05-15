@@ -1,0 +1,12 @@
+overwrite: true
+schema:
+  - "./test/schema.graphql"
+generates:
+  ./test/schema.generated.ts:
+    plugins:
+      - "typescript"
+  ./test/output.ts:
+    config:
+      schemaPath: "./test/schema.generated.ts"
+    plugins:
+      - "./index.js"
