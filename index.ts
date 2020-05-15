@@ -98,7 +98,7 @@ const createImportPath = (outputFile: string, schemaFile: string) => {
   const output = splitFilePath(outputFile);
   const schema = splitFilePath(schemaFile);
   const relativePath = relative(output.path, schema.path) || "./";
-  return relativePath + schema.basename;
+  return relativePath + sep + schema.basename;
 };
 
 export const plugin: PluginFunction<Config> = (schema, _, config, info) => {
