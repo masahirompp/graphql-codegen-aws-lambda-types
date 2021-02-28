@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-aws-lambda-types",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Generate aws-cdk AppSync Lambda Resolver types.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -17,7 +17,6 @@
   ],
   "author": "Masahiro Onohara <masahirompp@gmail.com> (https://github.com/masahirompp)",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.1",
     "@graphql-codegen/typescript": "^1.21.0",
