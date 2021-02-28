@@ -65,7 +65,7 @@ const queryTemplate = (
 ) =>
   `export type ${operation}${pascalCase(
     fieldName
-  )}Handler = Handler<AppSyncResolverEvent<${argumentType}>, ${returnType}>`;
+  )}Handler = AppSyncResolverHandler<${argumentType}, ${returnType}>`;
 
 const DEFAULT_AVOID_OPTIONALS = {
   object: false,
@@ -170,36 +170,11 @@ export const plugin: PluginFunction<Config> = (schema, _, config, info) => {
 
   return {
     prepend: [
-      `import { Handler } from 'aws-lambda';
+      `import { AppSyncResolverHandler } from 'aws-lambda';
 import * as schemaTypes from "${createImportPath(
         info?.outputFile || "",
         config.schemaPath
-      )}"
-export type AppSyncResolverEvent<ARGUMENTS = null> = {
-  arguments: ARGUMENTS
-  source: null
-  result: null
-  identity: {
-    sub: string
-    issuer: string
-    username: string
-    claims: { [key: string]: string }
-    sourceIP: string
-    defaultAuthStrategy: string
-  }
-  request: {
-    headers: { [key: string]: string }
-  }
-  info: {
-    parentTypeName: string
-    fieldName: string
-    variables: any
-  }
-  error: null
-  prev: null
-  stash: {}
-  outErrors: []
-}`,
+      )}"`,
     ],
     content: [...queries, ...mutations, ...subscriptions].join("\n"),
   };

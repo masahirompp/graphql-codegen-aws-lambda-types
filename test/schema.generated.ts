@@ -1,4 +1,7 @@
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -9,7 +12,7 @@ export type Scalars = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   username: Scalars['String'];
   conversations?: Maybe<ModelConvoLinkConnection>;
@@ -35,7 +38,7 @@ export type UserMessagesArgs = {
 };
 
 export type Conversation = {
-   __typename?: 'Conversation';
+  __typename?: 'Conversation';
   id: Scalars['ID'];
   messages?: Maybe<ModelMessageConnection>;
   associated?: Maybe<ModelConvoLinkConnection>;
@@ -62,7 +65,7 @@ export type ConversationAssociatedArgs = {
 };
 
 export type Message = {
-   __typename?: 'Message';
+  __typename?: 'Message';
   id: Scalars['ID'];
   author?: Maybe<User>;
   authorId?: Maybe<Scalars['String']>;
@@ -74,7 +77,7 @@ export type Message = {
 };
 
 export type ConvoLink = {
-   __typename?: 'ConvoLink';
+  __typename?: 'ConvoLink';
   id: Scalars['ID'];
   user: User;
   convoLinkUserId?: Maybe<Scalars['ID']>;
@@ -85,7 +88,7 @@ export type ConvoLink = {
 };
 
 export type Subscription = {
-   __typename?: 'Subscription';
+  __typename?: 'Subscription';
   onCreateConvoLink?: Maybe<ConvoLink>;
   onCreateMessage?: Maybe<Message>;
   onCreateUser?: Maybe<User>;
@@ -109,7 +112,7 @@ export enum ModelSortDirection {
 }
 
 export type ModelUserConnection = {
-   __typename?: 'ModelUserConnection';
+  __typename?: 'ModelUserConnection';
   items?: Maybe<Array<Maybe<User>>>;
   nextToken?: Maybe<Scalars['String']>;
 };
@@ -180,7 +183,7 @@ export type ModelUserFilterInput = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   test: Scalars['ID'];
   getUser?: Maybe<User>;
   listUsers?: Maybe<ModelUserConnection>;
@@ -223,7 +226,7 @@ export type DeleteUserInput = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   createUser?: Maybe<User>;
   updateUser?: Maybe<User>;
   deleteUser?: Maybe<User>;
@@ -343,7 +346,7 @@ export type DeleteConvoLinkInput = {
 };
 
 export type ModelConvoLinkConnection = {
-   __typename?: 'ModelConvoLinkConnection';
+  __typename?: 'ModelConvoLinkConnection';
   items?: Maybe<Array<Maybe<ConvoLink>>>;
   nextToken?: Maybe<Scalars['String']>;
 };
@@ -360,7 +363,7 @@ export type ModelConvoLinkFilterInput = {
 };
 
 export type ModelMessageConnection = {
-   __typename?: 'ModelMessageConnection';
+  __typename?: 'ModelMessageConnection';
   items?: Maybe<Array<Maybe<Message>>>;
   nextToken?: Maybe<Scalars['String']>;
 };
